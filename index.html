@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推したく | 現場を成功させる持ち物管理アプリ</title>
+    <meta name="description" content="推したくは、ライブやイベント当日の持ち物、やること、移動や行動の流れをまとめて管理できるアプリです。現場を成功させる準備を、ひとつに整理できます。">
+    <meta property="og:site_name" content="推したく">
+    <meta property="og:title" content="推したく | 現場を成功させる持ち物管理アプリ">
+    <meta property="og:description" content="持ち物、やること、当日の動きをまとめて整理。推したくは、現場準備を抜け漏れなく進めるためのアプリです。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/icon.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="推したく">
+    <meta name="twitter:description" content="現場準備をひとつにまとめる持ち物管理アプリ。">
+    <meta name="twitter:image" content="/icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #fffaf8;
+            --bg-surface: #ffffff;
+            --bg-soft: #fff3f7;
+            --line-soft: #f0e7eb;
+            --color-primary: #1f2a44;
+            --color-primary-deep: #151d31;
+            --color-primary-soft: #d9e1f2;
+            --color-accent-main: #ff5f8f;
+            --color-accent-main-soft: #ffd9e5;
+            --color-accent-main-deep: #d94674;
+            --color-accent-sub: #58d1c9;
+            --color-accent-sub-soft: #daf8f5;
+            --color-accent-sub-deep: #1ea89f;
+            --color-text: #20232d;
+            --color-text-sub: #667085;
+            --color-text-on-dark: #f8fbff;
+            --shadow-soft: 0 8px 32px rgba(31, 42, 68, 0.08);
+            --shadow-strong: 0 18px 56px rgba(31, 42, 68, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            color: var(--color-text);
+            background:
+                radial-gradient(circle at top right, rgba(255, 95, 143, 0.10), transparent 28%),
+                radial-gradient(circle at top left, rgba(88, 209, 201, 0.10), transparent 24%),
+                linear-gradient(180deg, #fffaf8 0%, #fffdfd 100%);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 250, 248, 0.85);
+            border-bottom: 1px solid rgba(240, 231, 235, 0.8);
+        }
+
+        .header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-accent-main), #ff8bae);
+            color: white;
+            box-shadow: 0 10px 22px rgba(255, 95, 143, 0.24);
+            font-size: 1rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: white;
+            background: linear-gradient(135deg, var(--color-accent-main), #ff7ca3);
+            box-shadow: 0 12px 28px rgba(255, 95, 143, 0.28);
+        }
+
+        .button-secondary {
+            color: var(--color-primary);
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--line-soft);
+            box-shadow: var(--shadow-soft);
+        }
+
+        main {
+            overflow: hidden;
+        }
+
+        section {
+            padding: 88px 0;
+        }
+
+        .hero {
+            padding-top: 56px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+            gap: 34px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: var(--color-accent-main-soft);
+            color: var(--color-accent-main-deep);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            line-height: 1.18;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        h1 .accent {
+            background: linear-gradient(135deg, var(--color-accent-main), #ff8ead 55%, #ffb3c9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-copy p {
+            max-width: 620px;
+            color: var(--color-text-sub);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 28px;
+        }
+
+        .hero-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .pill {
+            padding: 9px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid var(--line-soft);
+            color: var(--color-primary);
+            font-size: 0.92rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .preview-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: linear-gradient(160deg, var(--color-primary-deep) 0%, var(--color-primary) 60%, #2a3a60 100%);
+            box-shadow: var(--shadow-strong);
+            padding: 30px;
+            color: var(--color-text-on-dark);
+        }
+
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 18%, rgba(255, 95, 143, 0.24), transparent 28%),
+                radial-gradient(circle at 82% 24%, rgba(88, 209, 201, 0.18), transparent 24%);
+            pointer-events: none;
+        }
+
+        .preview-content {
+            position: relative;
+            display: grid;
+            gap: 18px;
+        }
+
+        .preview-kicker {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: #ffd7e3;
+            text-transform: uppercase;
+        }
+
+        .preview-heading {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            line-height: 1.3;
+        }
+
+        .preview-heading span {
+            color: #ff95b6;
+        }
+
+        .preview-body {
+            color: rgba(248, 251, 255, 0.84);
+            line-height: 1.8;
+        }
+
+        .mini-phone {
+            width: min(100%, 320px);
+            justify-self: end;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 28px;
+            padding: 16px;
+            box-shadow: 0 18px 44px rgba(10, 17, 31, 0.28);
+        }
+
+        .mini-phone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .mini-phone-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--color-primary);
+        }
+
+        .mini-phone-date {
+            font-size: 0.72rem;
+            color: var(--color-text-sub);
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #fff4f8 0%, #ffffff 100%);
+            border: 1px solid #f8dce5;
+            border-radius: 18px;
+            padding: 16px;
+        }
+
+        .event-tag {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: var(--color-accent-main-soft);
+            color: var(--color-accent-main-deep);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .event-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+        }
+
+        .event-sub {
+            font-size: 0.83rem;
+            color: var(--color-text-sub);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #f4ebee;
+            color: var(--color-text);
+            font-size: 0.86rem;
+        }
+
+        .check-item:first-of-type {
+            border-top: none;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .check-status {
+            margin-left: auto;
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .section-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            color: var(--color-text-sub);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            line-height: 1.3;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+
+        .section-lead {
+            max-width: 720px;
+            margin: 0 auto;
+            color: var(--color-text-sub);
+            line-height: 1.85;
+        }
+
+        .strategy-grid,
+        .feature-grid,
+        .flow-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .strategy-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .flow-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.84);
+            border: 1px solid rgba(240, 231, 235, 0.92);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(8px);
+        }
+
+        .card-kicker {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .card h3 {
+            font-size: 1.18rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--color-text-sub);
+            line-height: 1.8;
+        }
+
+        .soft-surface {
+            background: linear-gradient(180deg, rgba(255, 243, 247, 0.72) 0%, rgba(255, 255, 255, 0.66) 100%);
+            border-top: 1px solid rgba(240, 231, 235, 0.74);
+            border-bottom: 1px solid rgba(240, 231, 235, 0.74);
+        }
+
+        .voice-box {
+            padding: 34px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(255, 95, 143, 0.08), rgba(88, 209, 201, 0.10));
+            border: 1px solid rgba(240, 231, 235, 0.92);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            color: var(--color-primary);
+            font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .cta-panel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 32px;
+            padding: 52px 30px;
+            text-align: center;
+            background: linear-gradient(160deg, var(--color-primary-deep) 0%, var(--color-primary) 100%);
+            color: var(--color-text-on-dark);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .cta-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 16% 20%, rgba(255, 95, 143, 0.18), transparent 24%),
+                radial-gradient(circle at 84% 78%, rgba(88, 209, 201, 0.16), transparent 26%);
+            pointer-events: none;
+        }
+
+        .cta-panel > * {
+            position: relative;
+        }
+
+        .cta-panel h2 {
+            color: var(--color-text-on-dark);
+            margin-bottom: 14px;
+        }
+
+        .cta-panel p {
+            max-width: 680px;
+            margin: 0 auto 28px;
+            color: rgba(248, 251, 255, 0.82);
+            line-height: 1.9;
+        }
+
+        footer {
+            padding: 34px 0 48px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            color: var(--color-text-sub);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 960px) {
+            .hero-grid,
+            .strategy-grid,
+            .feature-grid,
+            .flow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mini-phone {
+                justify-self: stretch;
+                width: 100%;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            section {
+                padding: 72px 0;
+            }
+
+            .container {
+                width: min(100% - 24px, 1120px);
+            }
+
+            .header-inner {
+                min-height: 68px;
+            }
+
+            .header-actions .button-secondary {
+                display: none;
+            }
+
+            .preview-card,
+            .cta-panel {
+                padding: 24px;
+            }
+
+            .card,
+            .voice-box {
+                padding: 22px;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .hero-actions {
+                display: grid;
+                gap: 12px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">推</span>
+                <span>推したく</span>
+            </a>
+            <div class="header-actions">
+                <a href="#features" class="button button-secondary">できること</a>
+                <a href="install/index.html" class="button button-primary">はじめる</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">Oshikatsu Event Planner</div>
+                    <h1>
+                        現場を成功させるための
+                        <span class="accent">持ち物と当日の動き</span>を、
+                        ひとつにまとめる。
+                    </h1>
+                    <p>
+                        推したくは、ライブやイベントに向けた準備を整理するためのアプリです。
+                        持ち物チェック、やること管理、当日の行動メモをまとめて見渡せるので、
+                        直前の焦りや忘れ物を減らしながら、現場当日を落ち着いて迎えられます。
+                    </p>
+                    <div class="hero-points">
+                        <span class="pill">持ち物をイベントごとに整理</span>
+                        <span class="pill">当日の流れを見える化</span>
+                        <span class="pill">やることの抜け漏れを防ぐ</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="install/index.html" class="button button-primary">アプリをはじめる</a>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <div class="preview-content">
+                        <div class="preview-kicker">Preview</div>
+                        <div class="preview-heading">
+                            「何を持つか」と
+                            <span>「どう動くか」</span>を、
+                            同じ画面で確認。
+                        </div>
+                        <p class="preview-body">
+                            現場に必要な準備を分散させず、イベント単位で管理。
+                            前日確認から当日の行動まで、見返したい情報を一か所にまとめられます。
+                        </p>
+
+                        <div class="mini-phone">
+                            <div class="mini-phone-header">
+                                <div class="mini-phone-title">4/20 Spring Live</div>
+                                <div class="mini-phone-date">現場まであと3日</div>
+                            </div>
+                            <div class="event-card">
+                                <div class="event-tag">EVENT CHECK</div>
+                                <div class="event-title">横浜アリーナ公演</div>
+                                <div class="event-sub">
+                                    持ち物、集合時間、物販、入場前の確認をまとめて管理
+                                </div>
+                                <div class="check-item">
+                                    <span class="check-icon" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">OK</span>
+                                    <span>チケット / 会員証</span>
+                                    <span class="check-status" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">確認済み</span>
+                                </div>
+                                <div class="check-item">
+                                    <span class="check-icon" style="background: var(--color-accent-main-soft); color: var(--color-accent-main-deep);">!</span>
+                                    <span>モバイルバッテリー</span>
+                                    <span class="check-status" style="background: var(--color-accent-main-soft); color: var(--color-accent-main-deep);">未準備</span>
+                                </div>
+                                <div class="check-item">
+                                    <span class="check-icon" style="background: var(--color-primary-soft); color: var(--color-primary);">→</span>
+                                    <span>13:00 物販列 / 15:30 入場</span>
+                                    <span class="check-status" style="background: #edf2ff; color: var(--color-primary);">予定</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">Why Oshitaku</div>
+                    <h2>準備の不安を、当日の安心に変える</h2>
+                    <p class="section-lead">
+                        推したくは、現場前に起こりやすい「忘れ物」「確認漏れ」「時間の見落とし」を減らすために、
+                        必要な情報を整理しやすく設計しています。
+                    </p>
+                </div>
+
+                <div class="strategy-grid">
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-accent-main-soft); color: var(--color-accent-main-deep);">Packing</div>
+                        <h3>持ち物をイベント単位で管理</h3>
+                        <p>
+                            公演ごとに必要なものを分けておけるので、
+                            いつもの持ち物と今回だけ必要なものを混ぜずに確認できます。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">Schedule</div>
+                        <h3>当日の動きを見失わない</h3>
+                        <p>
+                            集合、移動、物販、入場などの流れをまとめて確認できるので、
+                            現地で慌てずに次の行動へ移れます。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-primary-soft); color: var(--color-primary);">Check</div>
+                        <h3>やることの抜け漏れを減らす</h3>
+                        <p>
+                            事前準備や確認事項を一覧で持てるから、
+                            前日や当日朝のチェックが短時間で済みます。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="soft-surface">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">Features</div>
+                    <h2>推したくでできること</h2>
+                    <p class="section-lead">
+                        推したくが支える準備の流れを、
+                        機能ごとにわかりやすく整理しています。
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-accent-main-soft); color: var(--color-accent-main-deep);">01</div>
+                        <h3>持ち物をわかりやすく一覧化</h3>
+                        <p>
+                            チケット、身分証、充電器、応援グッズなど、
+                            忘れたくない持ち物をひとつのリストで管理できます。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">02</div>
+                        <h3>イベントごとに準備を切り分け</h3>
+                        <p>
+                            公演や遠征ごとに内容を分けて整理できるので、
+                            別日の予定が混ざらず、今必要な準備だけを見返せます。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-primary-soft); color: var(--color-primary);">03</div>
+                        <h3>当日の行動メモをまとめる</h3>
+                        <p>
+                            集合時間、移動ルート、物販開始、入場時間など、
+                            当日の動きに関するメモをひとまとめにできます。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: #ffeecf; color: #9a6500;">04</div>
+                        <h3>直前確認をすばやく終わらせる</h3>
+                        <p>
+                            前日や当日朝に見返したい情報を整理しておけるため、
+                            準備の確認時間を短くしながら安心感を高められます。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">Flow</div>
+                    <h2>現場までの流れに沿って使える</h2>
+                </div>
+
+                <div class="flow-grid">
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-accent-main-soft); color: var(--color-accent-main-deep);">Before</div>
+                        <h3>行く前に</h3>
+                        <p>
+                            必要な持ち物と準備タスクを整理して、
+                            直前に慌てない状態をつくります。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">Day Of</div>
+                        <h3>当日に</h3>
+                        <p>
+                            集合や移動の流れを見返しながら、
+                            現地で必要な判断を落ち着いて進められます。
+                        </p>
+                    </article>
+                    <article class="card">
+                        <div class="card-kicker" style="background: var(--color-primary-soft); color: var(--color-primary);">Review</div>
+                        <h3>次の現場にも</h3>
+                        <p>
+                            準備内容を見直しやすいので、
+                            次回のイベント準備にも活かしやすくなります。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="voice-box">
+                    「持ち物は大丈夫？」
+                    「何時に動けば間に合う？」
+                    「当日どこを確認すればいい？」
+                    その不安を減らして、現場に集中できる状態をつくるのが推したくです。
+                </div>
+            </div>
+        </section>
+
+        <section style="padding-top: 0;">
+            <div class="container">
+                <div class="cta-panel">
+                    <h2>準備を整えて、現場をもっと楽しもう</h2>
+                    <p>
+                        推したくは、現場を成功させるための準備を見える形にするアプリです。
+                        持ち物も、やることも、当日の流れも、ひとつにまとめて確認できます。
+                    </p>
+                    <a href="install/index.html" class="button button-primary">推したくをはじめる</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-links">
+                <a href="install/index.html">インストール</a>
+                <a href="terms_of_service.html">利用規約</a>
+                <a href="privacy_policy.html">プライバシーポリシー</a>
+            </div>
+            <p>&copy; 2026 推したく. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

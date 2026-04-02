@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推したく 利用規約</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #fffaf8;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-soft: #fff3f7;
+            --line-soft: #f0e7eb;
+            --color-primary: #1f2a44;
+            --color-primary-deep: #151d31;
+            --color-primary-soft: #d9e1f2;
+            --color-accent-main: #ff5f8f;
+            --color-accent-main-soft: #ffd9e5;
+            --color-accent-main-deep: #d94674;
+            --color-accent-sub-soft: #daf8f5;
+            --color-accent-sub-deep: #1ea89f;
+            --color-text: #20232d;
+            --color-text-sub: #667085;
+            --shadow-soft: 0 8px 32px rgba(31, 42, 68, 0.08);
+            --shadow-strong: 0 18px 56px rgba(31, 42, 68, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 32px 16px 48px;
+            font-family: 'Zen Maru Gothic', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            color: var(--color-text);
+            background:
+                radial-gradient(circle at top right, rgba(255, 95, 143, 0.10), transparent 28%),
+                radial-gradient(circle at top left, rgba(88, 209, 201, 0.10), transparent 24%),
+                linear-gradient(180deg, #fffaf8 0%, #fffdfd 100%);
+        }
+
+        .container {
+            width: min(960px, 100%);
+            margin: 0 auto;
+            background: var(--bg-surface);
+            border: 1px solid rgba(240, 231, 235, 0.92);
+            border-radius: 28px;
+            box-shadow: var(--shadow-strong);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+        }
+
+        .hero {
+            position: relative;
+            padding: 34px 34px 28px;
+            background: linear-gradient(160deg, var(--color-primary-deep) 0%, var(--color-primary) 100%);
+            color: #f8fbff;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 18% 22%, rgba(255, 95, 143, 0.24), transparent 24%),
+                radial-gradient(circle at 84% 24%, rgba(88, 209, 201, 0.18), transparent 24%);
+            pointer-events: none;
+        }
+
+        .hero > * {
+            position: relative;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 217, 229, 0.18);
+            color: #ffd5e2;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            color: rgba(248, 251, 255, 0.82);
+            line-height: 1.8;
+        }
+
+        .content {
+            padding: 30px 34px 36px;
+        }
+
+        .update-date {
+            display: inline-flex;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--color-accent-sub-soft);
+            color: var(--color-accent-sub-deep);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: 1.16rem;
+            line-height: 1.5;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+
+        p,
+        li {
+            color: var(--color-text-sub);
+            line-height: 1.9;
+        }
+
+        a {
+            color: var(--color-accent-main-deep);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ol,
+        ul {
+            padding-left: 1.4rem;
+        }
+
+        li + li {
+            margin-top: 8px;
+        }
+
+        .note {
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 243, 247, 0.75) 0%, rgba(255, 255, 255, 0.92) 100%);
+            border: 1px solid var(--line-soft);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 26px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            padding-top: 16px;
+            border-top: 1px solid var(--line-soft);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 12px 28px;
+            }
+
+            .hero,
+            .content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="eyebrow">Terms of Service</div>
+            <h1>推したく 利用規約</h1>
+            <p>
+                推したくは、ライブやイベントに向けた持ち物、準備タスク、当日の行動メモ等を整理するためのサービスです。
+                本規約は、推したくの利用条件を定めるものです。
+            </p>
+        </div>
+
+        <div class="content">
+            <div class="update-date">最終更新日：2026年4月2日</div>
+
+            <div class="note">
+                <p>
+                    本規約は、推したく運営者（以下「運営者」といいます。）が提供するスマートフォンアプリおよび関連ウェブサイト
+                    「推したく」（以下「本サービス」といいます。）の利用条件を定めるものです。
+                    ユーザーは、本規約に同意したうえで本サービスを利用するものとします。
+                </p>
+            </div>
+
+            <section class="section">
+                <h2>第1条（適用）</h2>
+                <ol>
+                    <li>本規約は、ユーザーと運営者との間の本サービスの利用に関する一切の関係に適用されます。</li>
+                    <li>運営者が本サービス上で掲載する個別ルール、ガイドライン、説明等は、本規約の一部を構成するものとします。</li>
+                    <li>本規約と個別ルール等の内容が異なる場合は、個別ルール等が優先して適用されます。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第2条（利用登録）</h2>
+                <ol>
+                    <li>利用登録を希望する者は、本規約に同意のうえ、運営者の定める方法により登録を申請するものとします。</li>
+                    <li>運営者が申請を承認した時点で、利用契約が成立します。</li>
+                    <li>運営者は、申請者が以下のいずれかに該当すると判断した場合、登録を承認しないことがあります。</li>
+                </ol>
+                <ul>
+                    <li>登録内容に虚偽、誤記または記入漏れがあった場合</li>
+                    <li>本規約に違反したことがある場合</li>
+                    <li>その他、運営者が登録を適当でないと判断した場合</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>第3条（アカウント情報の管理）</h2>
+                <ol>
+                    <li>ユーザーは、自己の責任において、メールアドレス、パスワードその他の認証情報を適切に管理するものとします。</li>
+                    <li>ユーザーは、自己のアカウントを第三者に譲渡、貸与または共有してはなりません。</li>
+                    <li>登録された認証情報を用いて行われた行為は、当該ユーザー本人による行為とみなします。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第4条（本サービスの内容）</h2>
+                <p>本サービスは、主として以下の機能またはこれに関連する機能を提供します。</p>
+                <ul>
+                    <li>イベントや遠征ごとの持ち物管理</li>
+                    <li>準備タスクや確認事項の管理</li>
+                    <li>集合時間、移動、入場等の当日行動に関するメモ管理</li>
+                    <li>その他、運営者が追加または変更する関連機能</li>
+                </ul>
+                <p>
+                    運営者は、必要に応じて本サービスの内容を追加、変更または終了することができます。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>第5条（料金および有料機能）</h2>
+                <ol>
+                    <li>本サービスには、無料で利用できる機能のほか、有料機能が含まれる場合があります。</li>
+                    <li>有料機能の料金、課金方法、更新条件、解約方法等は、アプリ内表示または購入画面の記載に従うものとします。</li>
+                    <li>法令に基づき認められる場合を除き、支払済みの料金は返金されません。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第6条（禁止事項）</h2>
+                <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
+                <ol>
+                    <li>法令または公序良俗に違反する行為</li>
+                    <li>犯罪行為に関連する行為</li>
+                    <li>本サービスの運営を妨害し、または妨害するおそれのある行為</li>
+                    <li>不正アクセス、リバースエンジニアリング、過度な負荷をかける行為</li>
+                    <li>他者のアカウントを不正に利用する行為</li>
+                    <li>第三者の個人情報、プライバシー、肖像権、著作権その他の権利利益を侵害する行為</li>
+                    <li>事実に反するイベント情報、持ち物情報、メモ等を登録し、他者に不利益を与える行為</li>
+                    <li>本サービスを営利目的の宣伝、勧誘、広告等に不適切に利用する行為</li>
+                    <li>運営者が不適切と判断するその他の行為</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第7条（ユーザーコンテンツ）</h2>
+                <ol>
+                    <li>ユーザーが本サービスに登録または投稿する持ち物リスト、イベント情報、準備タスク、メモ、画像その他一切の情報
+                        （以下「ユーザーコンテンツ」といいます。）に関する権利は、当該ユーザーまたは正当な権利者に留保されます。</li>
+                    <li>ユーザーは、運営者に対し、本サービスの提供、維持、改善、不具合調査、サポート対応のために必要な範囲で、
+                        ユーザーコンテンツを利用する権利を無償で許諾するものとします。</li>
+                    <li>運営者は、ユーザーを特定できない形に加工した統計情報または匿名化情報を、
+                        サービス改善や分析のために利用できるものとします。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第8条（知的財産権）</h2>
+                <p>
+                    本サービスおよび本サービスに関連するプログラム、デザイン、文章、画像その他一切の情報に関する知的財産権は、
+                    ユーザーコンテンツを除き、運営者または正当な権利者に帰属します。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>第9条（サービスの停止または中断）</h2>
+                <ol>
+                    <li>運営者は、保守、障害対応、通信回線や設備の不具合、天災地変その他やむを得ない事由がある場合、
+                        ユーザーに事前通知することなく本サービスの全部または一部を停止または中断することがあります。</li>
+                    <li>運営者は、前項によりユーザーに生じた損害について、運営者に故意または重大な過失がある場合を除き、
+                        責任を負いません。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第10条（利用制限および登録抹消）</h2>
+                <ol>
+                    <li>運営者は、ユーザーが本規約に違反した場合または本サービスの適正な運営に支障を与えるおそれがあると判断した場合、
+                        事前通知なく利用制限、コンテンツ削除または登録抹消を行うことができます。</li>
+                    <li>運営者は、当該措置によりユーザーに生じた損害について、故意または重大な過失がある場合を除き責任を負いません。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第11条（退会）</h2>
+                <p>
+                    ユーザーは、運営者所定の方法により、いつでも本サービスを退会することができます。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>第12条（保証の否認および免責）</h2>
+                <ol>
+                    <li>運営者は、本サービスに事実上または法律上の瑕疵がないことを保証しません。</li>
+                    <li>本サービスに記録された持ち物、時間、行動予定その他の情報は、ユーザー自身が最終確認を行うものとし、
+                        運営者は現場参加や移動の成否、忘れ物、遅刻、チケット利用可否等について保証しません。</li>
+                    <li>運営者は、本サービスに起因してユーザーに生じた損害について、運営者に故意または重大な過失がある場合を除き、
+                        責任を負いません。</li>
+                </ol>
+            </section>
+
+            <section class="section">
+                <h2>第13条（個人情報の取扱い）</h2>
+                <p>
+                    運営者は、本サービスの利用によって取得する個人情報を、
+                    <a href="privacy_policy.html">プライバシーポリシー</a> に従って適切に取り扱います。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>第14条（利用規約の変更）</h2>
+                <p>
+                    運営者は、必要と判断した場合、本規約を変更することができます。
+                    重要な変更を行う場合は、本サービス上またはウェブサイト上で周知します。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>第15条（権利義務の譲渡禁止）</h2>
+                <p>
+                    ユーザーは、運営者の事前の書面による承諾なく、本規約上の地位または本規約に基づく権利義務を、
+                    第三者に譲渡し、承継させ、または担保に供することはできません。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>第16条（準拠法および裁判管轄）</h2>
+                <ol>
+                    <li>本規約の解釈には、日本法を準拠法とします。</li>
+                    <li>本サービスに関して紛争が生じた場合には、運営者の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</li>
+                </ol>
+            </section>
+
+            <div class="footer-links">
+                <a href="index.html">トップページ</a>
+                <a href="privacy_policy.html">プライバシーポリシー</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

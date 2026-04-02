@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推したくをインストール | iPhone / Android</title>
+    <meta name="description" content="推したくのインストールページです。iPhoneはApp Store、AndroidはGoogle Playからアプリを始められます。">
+    <meta property="og:title" content="推したくを今すぐ始める">
+    <meta property="og:description" content="iPhone / Android それぞれのインストールリンクを用意しています。持ち物管理と当日の準備を、今日から。">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="推したく">
+    <meta property="og:image" content="/install/ogp-install.png?v=20260216-1">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="推したく インストールページ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="推したくを今すぐ始める">
+    <meta name="twitter:description" content="iPhone / Android それぞれのインストールリンクを用意しています。">
+    <meta name="twitter:image" content="/install/ogp-install.png?v=20260216-1">
+    <meta name="twitter:image:alt" content="推したく インストールページ">
+    <link rel="icon" type="image/png" href="/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #fffaf8;
+            --bg-surface: #ffffff;
+            --bg-soft: #fff3f7;
+            --line-soft: #f0e7eb;
+            --color-primary: #1f2a44;
+            --color-primary-deep: #151d31;
+            --color-primary-soft: #d9e1f2;
+            --color-accent-main: #ff5f8f;
+            --color-accent-main-soft: #ffd9e5;
+            --color-accent-main-deep: #d94674;
+            --color-accent-sub: #58d1c9;
+            --color-accent-sub-soft: #daf8f5;
+            --color-accent-sub-deep: #1ea89f;
+            --color-text: #20232d;
+            --color-text-sub: #667085;
+            --color-text-on-dark: #f8fbff;
+            --shadow-soft: 0 8px 32px rgba(31, 42, 68, 0.08);
+            --shadow-strong: 0 18px 56px rgba(31, 42, 68, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 28px 16px 52px;
+            font-family: 'Zen Maru Gothic', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            color: var(--color-text);
+            background:
+                radial-gradient(circle at top right, rgba(255,95,143,0.10), transparent 26%),
+                radial-gradient(circle at top left, rgba(88,209,201,0.10), transparent 22%),
+                linear-gradient(180deg, #fffaf8 0%, #fffdfd 100%);
+        }
+
+        .shell {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            background: linear-gradient(160deg, var(--color-primary-deep) 0%, var(--color-primary) 100%);
+            box-shadow: var(--shadow-strong);
+            padding: 32px;
+            color: var(--color-text-on-dark);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 16% 18%, rgba(255, 95, 143, 0.24), transparent 24%),
+                radial-gradient(circle at 84% 18%, rgba(88, 209, 201, 0.18), transparent 24%),
+                radial-gradient(circle at 72% 82%, rgba(255, 255, 255, 0.06), transparent 22%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 24px;
+            align-items: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-accent-main), #ff8aad);
+            color: white;
+            box-shadow: 0 12px 28px rgba(255, 95, 143, 0.28);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(255, 217, 229, 0.16);
+            border: 1px solid rgba(255, 217, 229, 0.18);
+            color: #ffd7e3;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4.6vw, 3.3rem);
+            line-height: 1.22;
+            margin-bottom: 14px;
+        }
+
+        h1 .accent {
+            color: #ff95b6;
+        }
+
+        .lead {
+            max-width: 34rem;
+            color: rgba(248, 251, 255, 0.84);
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .device-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(248, 251, 255, 0.88);
+            line-height: 1.7;
+            font-size: 0.93rem;
+        }
+
+        .device-status::before {
+            content: '●';
+            color: var(--color-accent-sub);
+            font-size: 0.72rem;
+        }
+
+        .preview-card {
+            width: min(100%, 360px);
+            justify-self: end;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 28px;
+            padding: 18px;
+            box-shadow: 0 18px 44px rgba(10, 17, 31, 0.28);
+        }
+
+        .preview-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .preview-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--color-primary);
+        }
+
+        .preview-date {
+            font-size: 0.72rem;
+            color: var(--color-text-sub);
+        }
+
+        .preview-panel {
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fff4f8 0%, #ffffff 100%);
+            border: 1px solid #f8dce5;
+            padding: 16px;
+        }
+
+        .preview-tag {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: var(--color-accent-main-soft);
+            color: var(--color-accent-main-deep);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .preview-event {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .preview-copy {
+            color: var(--color-text-sub);
+            line-height: 1.75;
+            font-size: 0.84rem;
+            margin-bottom: 12px;
+        }
+
+        .preview-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #f4ebee;
+            color: var(--color-text);
+            font-size: 0.84rem;
+        }
+
+        .preview-item:first-of-type {
+            border-top: none;
+        }
+
+        .preview-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .content {
+            margin-top: 22px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .store-card,
+        .steps {
+            background: rgba(255,255,255,0.88);
+            border: 1px solid rgba(240,231,235,0.9);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(8px);
+        }
+
+        .store-card {
+            padding: 22px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .store-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(31, 42, 68, 0.12);
+        }
+
+        .store-card.recommended {
+            border-color: rgba(255, 95, 143, 0.34);
+            box-shadow: 0 16px 36px rgba(255, 95, 143, 0.16);
+        }
+
+        .recommend-tag {
+            display: none;
+            margin-bottom: 12px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--color-accent-main-soft);
+            color: var(--color-accent-main-deep);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .store-card.recommended .recommend-tag {
+            display: inline-block;
+        }
+
+        .store-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .store-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.92rem;
+            font-weight: 900;
+            color: var(--color-primary);
+        }
+
+        .store-icon.ios {
+            background: var(--color-primary-soft);
+        }
+
+        .store-icon.android {
+            background: var(--color-accent-sub-soft);
+            color: var(--color-accent-sub-deep);
+        }
+
+        .store-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--color-primary);
+        }
+
+        .store-sub {
+            color: var(--color-text-sub);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .store-body {
+            color: var(--color-text-sub);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .store-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .store-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .store-link.ios {
+            background: linear-gradient(135deg, var(--color-primary), #31466f);
+            color: white;
+            box-shadow: 0 12px 28px rgba(31, 42, 68, 0.20);
+        }
+
+        .store-link.android {
+            background: linear-gradient(135deg, var(--color-accent-sub), #77e1da);
+            color: var(--color-primary-deep);
+            box-shadow: 0 12px 28px rgba(88, 209, 201, 0.20);
+        }
+
+        .store-notes {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .store-notes li {
+            color: var(--color-text-sub);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .store-notes li::before {
+            content: '✓';
+            color: var(--color-accent-main);
+            margin-right: 8px;
+            font-weight: 800;
+        }
+
+        .steps {
+            padding: 24px;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--color-accent-sub-soft);
+            color: var(--color-accent-sub-deep);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .steps h2 {
+            font-size: 1.45rem;
+            line-height: 1.4;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .steps-lead {
+            color: var(--color-text-sub);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .step-item {
+            border-radius: 18px;
+            border: 1px solid var(--line-soft);
+            background: linear-gradient(180deg, rgba(255, 243, 247, 0.55) 0%, rgba(255,255,255,0.92) 100%);
+            padding: 16px;
+        }
+
+        .step-num {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--color-accent-main-deep);
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+        }
+
+        .step-text {
+            color: var(--color-text-sub);
+            line-height: 1.75;
+            font-size: 0.92rem;
+        }
+
+        .footer {
+            margin-top: 16px;
+            text-align: center;
+            color: var(--color-text-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 920px) {
+            .hero-grid,
+            .store-grid,
+            .step-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-card {
+                justify-self: stretch;
+                width: 100%;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 12px 32px;
+            }
+
+            .hero,
+            .store-card,
+            .steps {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="hero">
+            <div class="hero-grid">
+                <div>
+                    <div class="brand">
+                        <span class="brand-mark">推</span>
+                        <span>推したく</span>
+                    </div>
+                    <div class="badge">Install Guide</div>
+                    <h1>
+                        次の現場準備を、
+                        <span class="accent">今すぐ始める</span>
+                    </h1>
+                    <p class="lead">
+                        推したくは、持ち物管理、やること確認、当日の動きの整理をひとつにまとめるアプリです。
+                        お使いの端末に合わせて、App Store または Google Play からインストールできます。
+                    </p>
+                    <p class="device-status" id="device-status">
+                        端末を判定中です。お使いのOSに合うストアを下に表示します。
+                    </p>
+                </div>
+
+                <div class="preview-card">
+                    <div class="preview-head">
+                        <div class="preview-title">Install Preview</div>
+                        <div class="preview-date">Oshikatsu Ready</div>
+                    </div>
+                    <div class="preview-panel">
+                        <div class="preview-tag">READY CHECK</div>
+                        <div class="preview-event">現場前に見返したい情報を整理</div>
+                        <p class="preview-copy">
+                            チケット、身分証、モバイルバッテリー、集合時間、物販開始時間など、
+                            当日に必要な確認をひとまとめにできます。
+                        </p>
+                        <div class="preview-item">
+                            <span class="preview-icon" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">OK</span>
+                            <span>チケット / 会員証</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-icon" style="background: var(--color-accent-main-soft); color: var(--color-accent-main-deep);">!</span>
+                            <span>ペンライト / 充電確認</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-icon" style="background: var(--color-primary-soft); color: var(--color-primary);">→</span>
+                            <span>集合 13:00 / 入場 15:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="content">
+            <section class="store-grid">
+                <article class="store-card" id="ios-card">
+                    <div class="recommend-tag">Recommended</div>
+                    <div class="store-head">
+                        <div class="store-icon ios">iOS</div>
+                        <div>
+                            <div class="store-title">iPhone / iPad</div>
+                            <div class="store-sub">App Store からインストール</div>
+                        </div>
+                    </div>
+                    <p class="store-body">
+                        iPhone / iPad を使っている場合は、こちらからすぐに推したくを始められます。
+                    </p>
+                    <a class="store-link ios" href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486">
+                        App Storeでダウンロード
+                    </a>
+                    <ul class="store-notes">
+                        <li>持ち物リストや確認事項を手早く見返せます</li>
+                        <li>現場前の最終チェックをスムーズに進められます</li>
+                    </ul>
+                </article>
+
+                <article class="store-card" id="android-card">
+                    <div class="recommend-tag">Recommended</div>
+                    <div class="store-head">
+                        <div class="store-icon android">A</div>
+                        <div>
+                            <div class="store-title">Android</div>
+                            <div class="store-sub">Google Play からインストール</div>
+                        </div>
+                    </div>
+                    <p class="store-body">
+                        Android 端末でも、現場の準備に必要な持ち物と当日の動きをまとめて整理できます。
+                    </p>
+                    <a class="store-link android" href="https://play.google.com/store/apps/details?id=jp.smartswim.app">
+                        Google Playでダウンロード
+                    </a>
+                    <ul class="store-notes">
+                        <li>持ち物や当日の流れをまとめて確認できます</li>
+                        <li>Android端末でも快適に準備を整理できます</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="steps">
+                <div class="section-kicker">How To Start</div>
+                <h2>はじめ方は3ステップです</h2>
+                <p class="steps-lead">
+                    インストールしたら、次の現場に必要な持ち物と予定を整理するところから始められます。
+                </p>
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-num">STEP 1</div>
+                        <div class="step-title">ストアを開く</div>
+                        <p class="step-text">お使いの端末に合うボタンから、App Store または Google Play を開きます。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">STEP 2</div>
+                        <div class="step-title">アプリを追加する</div>
+                        <p class="step-text">「インストール」を押して、推したくを端末に追加します。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">STEP 3</div>
+                        <div class="step-title">現場準備を整理する</div>
+                        <p class="step-text">次の現場の持ち物、やること、当日の予定をまとめて登録します。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <p class="footer">&copy; 2026 推したく</p>
+    </main>
+
+    <script>
+        const iosCard = document.getElementById('ios-card');
+        const androidCard = document.getElementById('android-card');
+        const status = document.getElementById('device-status');
+        const ua = navigator.userAgent;
+        const isIOS = /iPhone|iPad|iPod/i.test(ua);
+        const isAndroid = /Android/i.test(ua);
+
+        if (isIOS) {
+            iosCard.classList.add('recommended');
+            iosCard.style.order = -1;
+            status.textContent = 'この端末は iPhone / iPad です。App Store からインストールしてください。';
+        } else if (isAndroid) {
+            androidCard.classList.add('recommended');
+            androidCard.style.order = -1;
+            status.textContent = 'この端末は Android です。Google Play からインストールしてください。';
+        } else {
+            status.textContent = 'PC ブラウザから開いています。スマホでは端末に合うストアを優先表示します。';
+        }
+    </script>
+</body>
+</html>

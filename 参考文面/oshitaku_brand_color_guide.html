@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オシタク — ブランドカラーガイド</title>
+<style>
+  :root {
+    --bg-page: #fffaf8;
+    --bg-surface: #ffffff;
+    --bg-soft: #fff3f7;
+    --line-soft: #f0e7eb;
+
+    --color-primary: #1f2a44;
+    --color-primary-deep: #151d31;
+    --color-primary-soft: #d9e1f2;
+
+    --color-accent-main: #ff5f8f;
+    --color-accent-main-soft: #ffd9e5;
+    --color-accent-main-deep: #d94674;
+
+    --color-accent-sub: #58d1c9;
+    --color-accent-sub-soft: #daf8f5;
+    --color-accent-sub-deep: #1ea89f;
+
+    --color-text: #20232d;
+    --color-text-sub: #667085;
+    --color-text-on-dark: #f8fbff;
+
+    --shadow-soft: 0 8px 32px rgba(31, 42, 68, 0.08);
+    --shadow-strong: 0 18px 56px rgba(31, 42, 68, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    padding: 48px 24px 72px;
+    font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    color: var(--color-text);
+    background:
+      radial-gradient(circle at top right, rgba(255,95,143,0.10), transparent 26%),
+      radial-gradient(circle at top left, rgba(88,209,201,0.10), transparent 22%),
+      linear-gradient(180deg, #fffaf8 0%, #fffdfd 100%);
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .header-eyebrow {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--color-accent-main-soft);
+    color: var(--color-accent-main-deep);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .header-title {
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.15;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+  }
+
+  .header-title span {
+    background: linear-gradient(135deg, var(--color-accent-main), #ff87ac 55%, #ffb1c8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--color-text-sub);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .divider {
+    width: 72px;
+    height: 3px;
+    border-radius: 999px;
+    margin: 22px auto 0;
+    background: linear-gradient(90deg, var(--color-accent-sub), var(--color-accent-main));
+  }
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text-sub);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .strategy {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .strategy-card {
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(240,231,235,0.9);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .strategy-kicker {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+
+  .strategy-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-primary);
+  }
+
+  .strategy-body {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    line-height: 1.7;
+  }
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+
+  .color-card {
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 22px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .color-swatch {
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .color-swatch svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .color-info {
+    padding: 20px 22px 24px;
+  }
+
+  .color-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .color-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--color-primary);
+  }
+
+  .color-hex {
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: var(--color-text-sub);
+    margin-bottom: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .color-use {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    line-height: 1.75;
+  }
+
+  .usage-section,
+  .ratio-section,
+  .vars-section {
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--line-soft);
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 28px;
+  }
+
+  .usage-title,
+  .ratio-title,
+  .vars-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .usage-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .usage-row:last-child { border-bottom: none; }
+
+  .usage-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .usage-label {
+    flex: 1;
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 1.65;
+  }
+
+  .usage-tag {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .ratio-grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .ratio-box {
+    border-radius: 18px;
+    padding: 18px;
+    color: white;
+  }
+
+  .ratio-box strong {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  .ratio-box span {
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.94;
+  }
+
+  .ratio-note {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-text-sub);
+  }
+
+  .preview-section {
+    margin: 0 auto 28px;
+  }
+
+  .preview-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background: linear-gradient(160deg, var(--color-primary-deep) 0%, var(--color-primary) 60%, #2a3a60 100%);
+    box-shadow: var(--shadow-strong);
+  }
+
+  .preview-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .preview-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr;
+    gap: 28px;
+    padding: 34px;
+  }
+
+  .preview-copy {
+    padding-right: 8px;
+  }
+
+  .preview-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #ffd4e1;
+    margin-bottom: 14px;
+  }
+
+  .preview-heading {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.18;
+    color: var(--color-text-on-dark);
+    margin-bottom: 12px;
+  }
+
+  .preview-heading span {
+    color: #ff93b4;
+  }
+
+  .preview-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(248, 251, 255, 0.82);
+    max-width: 420px;
+    margin-bottom: 22px;
+  }
+
+  .preview-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+
+  .preview-badge {
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .preview-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    border: none;
+    border-radius: 14px;
+    padding: 13px 18px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-accent-main), #ff7da4);
+    color: white;
+    box-shadow: 0 10px 22px rgba(255,95,143,0.28);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: #eaf7f5;
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .phone {
+    width: 100%;
+    max-width: 340px;
+    justify-self: end;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 28px;
+    padding: 16px;
+    box-shadow: 0 18px 44px rgba(10, 17, 31, 0.28);
+  }
+
+  .phone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .phone-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .phone-date {
+    font-size: 11px;
+    color: var(--color-text-sub);
+  }
+
+  .event-card {
+    background: linear-gradient(135deg, #fff4f8 0%, #ffffff 100%);
+    border: 1px solid #f8dce5;
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .event-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--color-accent-main-soft);
+    color: var(--color-accent-main-deep);
+    margin-bottom: 10px;
+  }
+
+  .event-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+  }
+
+  .event-sub {
+    font-size: 12px;
+    color: var(--color-text-sub);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-top: 1px solid #f4ebee;
+    font-size: 13px;
+    color: var(--color-text);
+  }
+
+  .check-item:first-of-type { border-top: none; }
+
+  .check-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .check-label {
+    flex: 1;
+  }
+
+  .check-status {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 999px;
+  }
+
+  .vars-section {
+    background: linear-gradient(160deg, #18223a 0%, #202d49 100%);
+    border-color: rgba(255,255,255,0.08);
+  }
+
+  .vars-title {
+    color: #f7fbff;
+  }
+
+  .vars-code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 2;
+    color: #eef5ff;
+    opacity: 0.95;
+    white-space: pre-wrap;
+  }
+
+  .vars-code .comment { color: #93a2c7; }
+  .vars-code .var-name { color: #8be2dc; }
+  .vars-code .var-val  { color: #ffb4ca; }
+
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-sub);
+    letter-spacing: 1.2px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .strategy,
+    .preview-inner,
+    .ratio-grid,
+    .color-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .phone {
+      justify-self: stretch;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    body {
+      padding: 28px 16px 52px;
+    }
+
+    .usage-row {
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .usage-tag {
+      margin-left: 56px;
+    }
+
+    .usage-section,
+    .ratio-section,
+    .vars-section {
+      padding: 22px;
+    }
+
+    .preview-inner {
+      padding: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <p class="header-eyebrow">Brand Identity</p>
+      <h1 class="header-title">オシタク <span>Color Guide</span></h1>
+      <p class="header-sub">推し活の高揚感をちゃんと乗せつつ、持ち物・チェックリスト・当日導線を安心して任せられる。かわいいだけではなく、現場を成功させるための実直さが伝わる配色に寄せています。</p>
+      <div class="divider"></div>
+    </div>
+
+    <p class="section-title">Direction</p>
+    <div class="strategy">
+      <div class="strategy-card">
+        <span class="strategy-kicker" style="background:#d9e1f2;color:#1f2a44;">Trust</span>
+        <p class="strategy-title">土台はネイビーで信頼感</p>
+        <p class="strategy-body">アプリ全体の芯は濃いネイビー。現場前の確認、一覧性、入力のしやすさなど、実用品としての安心感をつくります。</p>
+      </div>
+      <div class="strategy-card">
+        <span class="strategy-kicker" style="background:#ffd9e5;color:#d94674;">Excitement</span>
+        <p class="strategy-title">推し活感はピンクで表現</p>
+        <p class="strategy-body">推し活らしい高揚感はペンライトピンクで表現。ただし全面には使わず、CTAや強調ポイントに絞って効かせます。</p>
+      </div>
+      <div class="strategy-card">
+        <span class="strategy-kicker" style="background:#daf8f5;color:#1ea89f;">Practical</span>
+        <p class="strategy-title">補助色はミントで整理感</p>
+        <p class="strategy-body">チェック完了、補助情報、安心系のUIにはミント。かわいさだけでなく、整理された印象と機能的な見やすさを足します。</p>
+      </div>
+    </div>
+
+    <p class="section-title">Color Palette</p>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1f2a44;">
+          <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <circle cx="330" cy="28" r="72" fill="rgba(255,255,255,0.04)"/>
+            <circle cx="56" cy="144" r="90" fill="rgba(88,209,201,0.10)"/>
+            <path d="M0 118 Q70 84 152 104 T400 76" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="14"/>
+            <path d="M0 68 Q88 34 176 56 T400 34" fill="none" stroke="rgba(88,209,201,0.18)" stroke-width="5"/>
+          </svg>
+        </div>
+        <div class="color-info">
+          <span class="color-badge" style="background:#d9e1f2;color:#1f2a44;">Primary</span>
+          <p class="color-name">ステージネイビー</p>
+          <p class="color-hex">#1F2A44</p>
+          <p class="color-use">アプリの信頼感を担う基調色。ナビゲーション、主要見出し、ダーク面の背景に使用。</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#fff8f2;">
+          <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <circle cx="320" cy="34" r="80" fill="rgba(255,95,143,0.06)"/>
+            <circle cx="86" cy="140" r="90" fill="rgba(88,209,201,0.08)"/>
+            <path d="M0 110 Q90 88 170 98 T400 88" fill="none" stroke="rgba(31,42,68,0.06)" stroke-width="12"/>
+            <path d="M0 60 Q84 34 182 54 T400 48" fill="none" stroke="rgba(255,95,143,0.10)" stroke-width="4"/>
+          </svg>
+        </div>
+        <div class="color-info">
+          <span class="color-badge" style="background:#f9eee8;color:#8a5a2b;">Surface</span>
+          <p class="color-name">チケットアイボリー</p>
+          <p class="color-hex">#FFF8F2</p>
+          <p class="color-use">紙チケットや台紙を思わせるやわらかな面色。カード、フォーム、モーダルの土台に最適。</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:linear-gradient(135deg,#ff5f8f 0%, #ff7da4 55%, #ffb1c8 100%);"></div>
+        <div class="color-info">
+          <span class="color-badge" style="background:#ffd9e5;color:#d94674;">Accent 1</span>
+          <p class="color-name">ペンライトピンク</p>
+          <p class="color-hex">#FF5F8F</p>
+          <p class="color-use">推し活らしさと熱量を伝える主アクセント。CTA、現在地、重要アクション、強調に使用。</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:linear-gradient(135deg,#daf8f5 0%, #8fe6df 45%, #58d1c9 100%);">
+          <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <path d="M0 122 Q90 92 176 112 T400 88" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="14"/>
+            <path d="M0 76 Q76 42 172 64 T400 44" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="5"/>
+          </svg>
+        </div>
+        <div class="color-info">
+          <span class="color-badge" style="background:#daf8f5;color:#1ea89f;">Accent 2</span>
+          <p class="color-name">サポートミント</p>
+          <p class="color-hex">#58D1C9</p>
+          <p class="color-use">チェック完了、補助情報、安心感のある案内用。ピンクを支えてUIを見やすく整えます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="usage-section">
+      <p class="usage-title">用途ガイド</p>
+
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#1f2a44;"></div>
+        <span class="usage-label">アプリバー、タブ、見出し、ダーク背景のキービジュアル</span>
+        <span class="usage-tag" style="background:#d9e1f2;color:#1f2a44;">Primary</span>
+      </div>
+
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#fff8f2;border-color:#f0e7eb;"></div>
+        <span class="usage-label">カード、フォーム、チェックリスト、情報の読み取り面</span>
+        <span class="usage-tag" style="background:#f9eee8;color:#8a5a2b;">Surface</span>
+      </div>
+
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#ff5f8f;"></div>
+        <span class="usage-label">メインCTA、進行中のイベント、重要なお知らせ、選択中状態</span>
+        <span class="usage-tag" style="background:#ffd9e5;color:#d94674;">Accent 1</span>
+      </div>
+
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#58d1c9;"></div>
+        <span class="usage-label">完了状態、補足バッジ、安心系のサブアクション、導線補助</span>
+        <span class="usage-tag" style="background:#daf8f5;color:#1ea89f;">Accent 2</span>
+      </div>
+
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#20232d;"></div>
+        <span class="usage-label">本文テキスト、入力文字、詳細情報。文字色は黒すぎないダークグレーで可読性を確保</span>
+        <span class="usage-tag" style="background:#eef2f6;color:#445065;">Text</span>
+      </div>
+    </div>
+
+    <div class="ratio-section">
+      <p class="ratio-title">配色バランスの目安</p>
+      <div class="ratio-grid">
+        <div class="ratio-box" style="background:#1f2a44;">
+          <strong>70%</strong>
+          <span>ネイビーとニュートラルで土台をつくる。実用アプリとしての安定感を優先。</span>
+        </div>
+        <div class="ratio-box" style="background:#ff5f8f;">
+          <strong>20%</strong>
+          <span>ピンクは高揚感の演出用。使いすぎず、押しどころだけに置く。</span>
+        </div>
+        <div class="ratio-box" style="background:#58d1c9;">
+          <strong>10%</strong>
+          <span>ミントで整理感と完了感を補強。UIの息継ぎ役にする。</span>
+        </div>
+      </div>
+      <p class="ratio-note">ピンクを全面に出すと「かわいい寄り」に倒れやすいので、オシタクでは <strong>ネイビー主体</strong> にして、ピンクは主役ではなく「ここが大事」を伝える色として扱うのがよいです。</p>
+    </div>
+
+    <div class="preview-section">
+      <p class="section-title">UI Preview</p>
+      <div class="preview-card">
+        <svg class="preview-bg" viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle cx="820" cy="60" r="170" fill="rgba(255,95,143,0.14)"/>
+          <circle cx="120" cy="350" r="220" fill="rgba(88,209,201,0.10)"/>
+          <path d="M0 280 Q150 210 300 258 T960 184" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="26"/>
+          <path d="M0 164 Q180 98 354 146 T960 108" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+        </svg>
+
+        <div class="preview-inner">
+          <div class="preview-copy">
+            <p class="preview-eyebrow">推し活 × 準備アプリ</p>
+            <h2 class="preview-heading">現場前の高揚感も、<br><span>忘れ物ゼロ</span>も。</h2>
+            <p class="preview-body">オシタクは、イベントごとのチェックリスト、持ち物、会場メモをひとつにまとめるアプリ。かわいいだけで終わらず、当日ちゃんと役に立つ印象を色でも伝えます。</p>
+
+            <div class="preview-badges">
+              <span class="preview-badge" style="background:rgba(255,217,229,0.18);color:#ffdbe7;border:1px solid rgba(255,217,229,0.20);">イベント起点</span>
+              <span class="preview-badge" style="background:rgba(218,248,245,0.14);color:#d8fbf7;border:1px solid rgba(218,248,245,0.18);">準備の見える化</span>
+              <span class="preview-badge" style="background:rgba(255,255,255,0.08);color:#f3f7ff;border:1px solid rgba(255,255,255,0.12);">現場で使える</span>
+            </div>
+
+            <div class="preview-buttons">
+              <button class="btn-primary">持ち物を確認する</button>
+              <button class="btn-secondary">イベントを見る</button>
+            </div>
+          </div>
+
+          <div class="phone">
+            <div class="phone-header">
+              <div>
+                <div class="phone-title">4/20 横アリ 昼公演</div>
+                <div class="phone-date">12:00 開場 / 13:00 開演</div>
+              </div>
+              <span class="preview-badge" style="background:#daf8f5;color:#1ea89f;">準備 75%</span>
+            </div>
+
+            <div class="event-card">
+              <span class="event-tag">CHECK LIST</span>
+              <div class="event-title">当日の持ち物</div>
+              <div class="event-sub">チケット、うちわ、ペンラ、アクスタ。現場で必要なものをイベント単位で確認。</div>
+
+              <div class="check-item">
+                <span class="check-icon" style="background:#daf8f5;color:#1ea89f;">✓</span>
+                <span class="check-label">デジチケ確認</span>
+                <span class="check-status" style="background:#daf8f5;color:#1ea89f;">完了</span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon" style="background:#ffd9e5;color:#d94674;">!</span>
+                <span class="check-label">ペンライト電池</span>
+                <span class="check-status" style="background:#ffd9e5;color:#d94674;">要確認</span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon" style="background:#eef2f6;color:#445065;">•</span>
+                <span class="check-label">うちわ収納ケース</span>
+                <span class="check-status" style="background:#eef2f6;color:#445065;">未確認</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vars-section">
+      <p class="vars-title">CSS Variables</p>
+      <pre class="vars-code"><span class="comment">/* オシタク — ブランドカラー */</span>
+<span class="comment">:root {</span>
+  <span class="var-name">--color-bg-page</span>:          <span class="var-val">#fffaf8</span>;  <span class="comment">/* ページ背景 */</span>
+  <span class="var-name">--color-bg-surface</span>:       <span class="var-val">#ffffff</span>;  <span class="comment">/* カード・モーダル */</span>
+  <span class="var-name">--color-surface-soft</span>:     <span class="var-val">#fff8f2</span>;  <span class="comment">/* チケットアイボリー */</span>
+
+  <span class="var-name">--color-primary</span>:          <span class="var-val">#1f2a44</span>;  <span class="comment">/* ステージネイビー */</span>
+  <span class="var-name">--color-primary-deep</span>:     <span class="var-val">#151d31</span>;  <span class="comment">/* ダーク背景 */</span>
+
+  <span class="var-name">--color-accent-main</span>:      <span class="var-val">#ff5f8f</span>;  <span class="comment">/* ペンライトピンク */</span>
+  <span class="var-name">--color-accent-main-soft</span>: <span class="var-val">#ffd9e5</span>;  <span class="comment">/* ピンク薄色 */</span>
+
+  <span class="var-name">--color-accent-sub</span>:       <span class="var-val">#58d1c9</span>;  <span class="comment">/* サポートミント */</span>
+  <span class="var-name">--color-accent-sub-soft</span>:  <span class="var-val">#daf8f5</span>;  <span class="comment">/* ミント薄色 */</span>
+
+  <span class="var-name">--color-text-primary</span>:     <span class="var-val">#20232d</span>;  <span class="comment">/* 本文テキスト */</span>
+  <span class="var-name">--color-text-secondary</span>:   <span class="var-val">#667085</span>;  <span class="comment">/* 補助テキスト */</span>
+<span class="comment">}</span></pre>
+    </div>
+
+    <p class="footer">オシタク — Brand Color Guide v1.0</p>
+  </div>
+</body>
+</html>
