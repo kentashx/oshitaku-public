@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' blob:; connect-src https://isnuqogamvhybneycxjw.supabase.co; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <title>共有された祭壇 · 推したく</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#fff8fb;color:#352b35;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;line-height:1.7}
+    main{max-width:760px;margin:auto;padding:24px 18px 40px}header{display:flex;align-items:center;gap:12px;margin-bottom:24px}header img{width:48px;height:48px;border-radius:12px}h1{font-size:22px;margin:0}header p{margin:0;color:#8a7181;font-size:12px}
+    .card{border:1px solid #f2dfe7;border-radius:24px;background:#fff;padding:18px;box-shadow:0 10px 35px #ba7d9810}#photo{width:100%;display:block;border-radius:14px}#caption{white-space:pre-wrap;overflow-wrap:anywhere;margin:18px 0 4px}#status{padding:28px 12px;text-align:center;color:#7d6574}#actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}button,a.action{border:0;border-radius:999px;padding:12px 20px;font:inherit;font-weight:600;text-decoration:none;text-align:center;cursor:pointer;background:#df407a;color:#fff;flex:1;min-width:140px}.secondary{background:#f9eaf0!important;color:#b93b68!important}button:focus-visible,a:focus-visible{outline:3px solid #6f62bf;outline-offset:3px}button:disabled{opacity:.5;cursor:default}.note{font-size:12px;color:#8a7181;margin-top:18px}footer{margin-top:24px;text-align:center;font-size:12px}footer a{color:#a54b70}#retry{max-width:220px;margin:12px auto;display:block}[hidden]{display:none!important}
+    @media(min-width:600px){main{padding:36px 24px 48px}.card{padding:24px}h1{font-size:26px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><img src="icon.png" alt="推したく"><div><h1>共有された祭壇</h1><p>好きなものと、思い出を飾ろう。</p></div></header>
+  <section class="card" aria-label="公開された祭壇画像">
+    <p id="status" role="status" aria-live="polite">祭壇を読み込み中…</p>
+    <button id="retry" class="secondary" hidden>再読み込み</button>
+    <img id="photo" alt="共有された祭壇の公開画像" hidden>
+    <p id="caption" hidden></p>
+    <div id="actions" hidden><a id="open-app" class="action">推したくアプリで見る</a><button id="copy" class="secondary">リンクをコピー</button></div>
+    <p class="note">本人がリンク共有を有効にした公開画像だけを表示します。編集中の祭壇や元写真は表示されません。リンクが停止されたり、投稿が非公開になったりすると閲覧できなくなります。</p>
+  </section>
+  <footer><a href="privacy_policy.html">プライバシーポリシー</a> · <a href="terms_of_service.html">利用規約</a></footer>
+</main>
+<script>
+  'use strict';
+  const params = new URLSearchParams(location.search);
+  const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  const room = params.get('id') || '', token = params.get('share') || '';
+  const valid = uuid.test(room) && uuid.test(token) && params.getAll('id').length === 1 && params.getAll('share').length === 1;
+  const status = document.getElementById('status'), photo = document.getElementById('photo'), caption = document.getElementById('caption'), actions = document.getElementById('actions'), retry = document.getElementById('retry');
+  const endpoint = new URL('https://isnuqogamvhybneycxjw.supabase.co/functions/v1/room-share');
+  endpoint.search = new URLSearchParams({id:room.toLowerCase(),share:token.toLowerCase()}).toString();
+  // This is the existing distributable anon client JWT, never a server secret.
+  const clientKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzbnVxb2dhbXZoeWJuZXljeGp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNTgyOTMsImV4cCI6MjA5MDYzNDI5M30.6c6K_uTWmt1MgadiYxJqjf3RH3h0zQg2twbJeKA7yng';
+  const requestOptions = {cache:'no-store',referrerPolicy:'no-referrer',headers:{apikey:clientKey,Authorization:'Bearer '+clientKey}};
+  let generation = 0;
+  let imageObjectURL = null;
+  function unavailable(message) {
+    photo.hidden = true; photo.removeAttribute('src'); caption.hidden = true; actions.hidden = true;
+    if (imageObjectURL) { URL.revokeObjectURL(imageObjectURL); imageObjectURL = null; }
+    status.hidden = false; status.textContent = message; retry.hidden = !valid;
+  }
+  async function load() {
+    const request = ++generation;
+    unavailable('祭壇を読み込み中…'); retry.hidden = true;
+    if (!valid) { unavailable('祭壇のリンクを確認してください。共有されたURLから開いてください。'); return; }
+    try {
+      const response = await fetch(endpoint, requestOptions);
+      if (!response.ok) throw new Error('unavailable');
+      const data = await response.json();
+      if (request !== generation) return;
+      const imageURL = new URL(endpoint); imageURL.searchParams.set('image','1');
+      const imageResponse = await fetch(imageURL, requestOptions);
+      if (!imageResponse.ok) throw new Error('unavailable');
+      const blob = await imageResponse.blob();
+      if (request !== generation) return;
+      photo.onload = () => {
+        if (request !== generation) return;
+        status.hidden = true; photo.hidden = false; actions.hidden = false;
+        caption.textContent = typeof data.caption === 'string' ? data.caption : ''; caption.hidden = !caption.textContent;
+      };
+      photo.onerror = () => { if (request === generation) unavailable('この祭壇のリンクは停止中、または公開されていません。'); };
+      imageObjectURL = URL.createObjectURL(blob); photo.src = imageObjectURL;
+      const appURL = new URL('com.oshitaku.app://shared-room'); appURL.search = endpoint.search;
+      document.getElementById('open-app').href = appURL.href;
+    } catch { if (request === generation) unavailable('この祭壇のリンクは停止中、または公開されていません。通信を確認して再読み込みしてください。'); }
+  }
+  retry.addEventListener('click',load);
+  document.getElementById('copy').addEventListener('click',async () => {
+    const url = new URL(location.href); url.search = endpoint.search; url.hash = '';
+    try { await navigator.clipboard.writeText(url.href); document.getElementById('copy').textContent = 'コピーしました'; }
+    catch { document.getElementById('copy').textContent = 'ブラウザの共有からURLをコピー'; }
+  });
+  document.addEventListener('visibilitychange',() => { if (document.visibilityState === 'visible') load(); else { ++generation; unavailable('祭壇を読み込み中…'); } });
+  load();
+</script>
+</body>
+</html>
