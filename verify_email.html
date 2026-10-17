@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メールアドレス認証 | 推したく</title>
-    <meta name="description" content="推したくのメールアドレス認証が完了しました。現場までの持ち物管理と当日の準備を、このまま始められます。">
+    <meta name="description" content="推したくのメールアドレスを確認しました。アプリに戻って設定を完了してください。">
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -297,49 +297,34 @@
                     <span>推したく</span>
                 </div>
                 <p class="hero-copy">
-                    持ち物、やること、当日の動きを整理して、
-                    現場に集中できる状態をつくるためのアプリです。
+                    お迎えしたグッズを、スマホの中の祭壇に。
                 </p>
             </div>
         </div>
 
         <div class="content">
             <div class="status-icon">✓</div>
-            <h1>メールアドレスの認証が完了しました</h1>
+            <h1>メールアドレスを確認しました</h1>
             <p class="message">
-                推したくへようこそ。
-                これで、現場までの準備と当日の確認をこのまま始められます。
+                推したくアプリに戻って、データ引き継ぎの設定を完了してください。
+                アプリが自動で開かないときは、下のボタンを押してください。
             </p>
-
-            <div class="info-box">
-                <h2>推したくで整理できること</h2>
-                <ul class="info-list">
-                    <li>
-                        <span class="bullet">1</span>
-                        <span><strong>持ち物の整理</strong><br>チケットや身分証、応援グッズなどをイベントごとに確認できます。</span>
-                    </li>
-                    <li>
-                        <span class="bullet" style="background: var(--color-accent-sub-soft); color: var(--color-accent-sub-deep);">2</span>
-                        <span><strong>やることの管理</strong><br>事前準備や前日確認の抜け漏れを減らせます。</span>
-                    </li>
-                    <li>
-                        <span class="bullet" style="background: var(--color-primary-soft); color: var(--color-primary);">3</span>
-                        <span><strong>当日の動きの確認</strong><br>集合時間や移動、現地での流れをまとめて見返せます。</span>
-                    </li>
-                </ul>
-            </div>
-
             <div class="actions">
-                <a href="index.html" class="button button-primary">公式サイトへ戻る</a>
-                <a href="install/index.html" class="button button-secondary">インストールページを見る</a>
+                <a id="open-app" href="com.oshitaku.app://login-callback/" class="button button-primary">推したくアプリを開く</a>
             </div>
-
             <p class="help-text">
-                すでにアプリをインストール済みの場合は、そのままアプリを開いてログインしてください。
-                まだインストールしていない場合は、インストールページから案内を確認できます。
+                このページをパソコンなど別の端末で開いた場合は、メールに書かれている確認コードをアプリに入力してください。
             </p>
         </div>
-
+        <script>
+            // Supabase sends the result (code / tokens / error) in the query or fragment; hand it to the app unchanged.
+            (function () {
+                var target = 'com.oshitaku.app://login-callback/' + window.location.search + window.location.hash;
+                var link = document.getElementById('open-app');
+                link.setAttribute('href', target);
+                if (window.location.search || window.location.hash) { window.location.replace(target); }
+            })();
+        </script>
         <div class="footer">
             <div class="footer-links">
                 <a href="terms_of_service.html">利用規約</a>
