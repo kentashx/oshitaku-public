@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推したく｜推し活の記録アプリ</title>
+    <meta name="description" content="グッズを撮って、自分だけの祭壇に。参戦の思い出も、まとめて残せる推し活アプリ「推したく」。">
+    <meta property="og:site_name" content="推したく">
+    <meta property="og:title" content="推したく｜推し活の記録アプリ">
+    <meta property="og:description" content="飾りきれない好きも、スマホの中へ。グッズの登録、祭壇づくり、参戦の記録をひとつに。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://kentashx.github.io/oshitaku-public/app/icon.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="推したく｜推し活の記録アプリ">
+    <meta name="twitter:description" content="飾りきれない好きも、スマホの中へ。">
+    <meta name="twitter:image" content="https://kentashx.github.io/oshitaku-public/app/icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <style>
+        :root {
+            --pink: #ff5f8f;
+            --pink-soft: #ffd9e5;
+            --ink: #20232d;
+            --ink-sub: #667085;
+            --page: #fffaf8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+            font-family: 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 85% 10%, rgba(255, 95, 143, 0.16), transparent 34%),
+                radial-gradient(circle at 10% 90%, rgba(88, 209, 201, 0.14), transparent 32%),
+                var(--page);
+            line-height: 1.7;
+        }
+
+        main {
+            width: min(420px, 100%);
+            text-align: center;
+        }
+
+        .icon {
+            width: 128px;
+            height: 128px;
+            border-radius: 30px;
+            box-shadow: 0 18px 40px rgba(255, 95, 143, 0.22);
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .lead {
+            margin-top: 6px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        .sub {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: var(--ink-sub);
+        }
+
+        .stores {
+            margin-top: 28px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .store {
+            display: block;
+            padding: 15px 20px;
+            border-radius: 999px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, var(--pink), #ff8bae);
+            box-shadow: 0 12px 28px rgba(255, 95, 143, 0.28);
+        }
+
+        .store.secondary {
+            color: var(--ink);
+            background: #fff;
+            border: 1px solid #f0e7eb;
+            box-shadow: 0 8px 24px rgba(31, 42, 68, 0.08);
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 0.8rem;
+            color: var(--ink-sub);
+        }
+
+        footer a { color: inherit; }
+    </style>
+</head>
+<body>
+    <main>
+        <img class="icon" src="icon.png" alt="推したく">
+        <h1>推したく</h1>
+        <p class="lead">飾りきれない好きも、スマホの中へ。</p>
+        <p class="sub">グッズを撮って、自分だけの祭壇に。<br>参戦の思い出も、まとめて残せる推し活アプリです。</p>
+        <div class="stores">
+            <a class="store" id="ios" href="https://apps.apple.com/jp/app/id6761519647">App Storeでダウンロード</a>
+            <a class="store secondary" id="android" href="https://play.google.com/store/apps/details?id=com.oshitaku.app">Google Playでダウンロード</a>
+        </div>
+        <footer>
+            <a href="../privacy_policy.html">プライバシーポリシー</a>・<a href="../terms_of_service.html">利用規約</a>
+        </footer>
+    </main>
+    <script>
+        // QR codes in the app's share images point here: phones go straight to their store.
+        const ua = navigator.userAgent;
+        const isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+        const isAndroid = /Android/i.test(ua);
+        if (isAndroid) {
+            document.getElementById('android').className = 'store';
+            document.getElementById('ios').className = 'store secondary';
+            document.querySelector('.stores').prepend(document.getElementById('android'));
+            location.replace(document.getElementById('android').href);
+        } else if (isIOS) {
+            location.replace(document.getElementById('ios').href);
+        }
+    </script>
+</body>
+</html>

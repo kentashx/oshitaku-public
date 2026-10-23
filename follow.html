@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <title>推したくでフォロー · 推したく</title>
+  <meta property="og:site_name" content="推したく">
+  <meta property="og:title" content="推したくでフォローしてね">
+  <meta property="og:description" content="アプリで開いて「フォローする」を押すと、友だちに公開された祭壇を見られます。">
+  <meta property="og:image" content="https://kentashx.github.io/oshitaku-public/icon.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <style>
+    :root{--pink:#ff5f8f;--pink-deep:#d94674;--pink-soft:#ffd9e5;--ink:#20232d;--ink-sub:#667085;--page:#fffaf8}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 16px;
+      font-family:'Hiragino Maru Gothic ProN','Hiragino Sans','Yu Gothic',sans-serif;color:var(--ink);line-height:1.7;
+      background:radial-gradient(circle at 85% 10%,rgba(255,95,143,.16),transparent 34%),radial-gradient(circle at 10% 90%,rgba(88,209,201,.14),transparent 32%),var(--page)}
+    main{width:min(420px,100%);text-align:center}
+    .icon{width:112px;height:112px;border-radius:26px;box-shadow:0 18px 40px rgba(255,95,143,.22)}
+    h1{margin-top:20px;font-size:1.5rem;font-weight:800}
+    .lead{margin-top:8px;font-size:.98rem;color:var(--ink-sub)}
+    .steps{margin:22px auto 0;padding:16px 18px;text-align:left;list-style:none;background:#fff;border:1px solid #f2dfe7;border-radius:20px;counter-reset:s}
+    .steps li{position:relative;padding-left:32px;font-size:.92rem}
+    .steps li+li{margin-top:8px}
+    .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:.15em;width:22px;height:22px;border-radius:50%;
+      background:var(--pink);color:#fff;font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+    .actions{margin-top:24px;display:grid;gap:12px}
+    .button{display:block;padding:15px 20px;border-radius:999px;font-weight:800;text-decoration:none;color:#fff;
+      background:linear-gradient(135deg,var(--pink),#ff8bae);box-shadow:0 12px 28px rgba(255,95,143,.28)}
+    .button.secondary{color:var(--ink);background:#fff;border:1px solid #f0e7eb;box-shadow:0 8px 24px rgba(31,42,68,.08)}
+    .button:focus-visible{outline:3px solid #6f62bf;outline-offset:3px}
+    .note{margin-top:18px;font-size:.8rem;color:var(--ink-sub)}
+    #invalid{margin-top:18px;padding:14px 16px;border-radius:16px;background:#fff;border:1px solid #f2dfe7;color:var(--pink-deep);font-weight:700}
+    footer{margin-top:28px;font-size:.8rem;color:var(--ink-sub)}footer a{color:inherit}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+<main>
+  <img class="icon" src="icon.png" alt="推したく">
+  <h1>推したくでフォローしてね</h1>
+  <p class="lead">アプリで開いて「フォローする」を押すと、<br>友だちに公開された祭壇を見られます。</p>
+  <ol class="steps">
+    <li>推したくアプリを入れる（入っていればそのまま）</li>
+    <li>下の「推したくアプリで開く」を押す</li>
+    <li>「フォローする」を押す</li>
+  </ol>
+  <p id="invalid" role="alert" hidden>リンクを確認してください。届いたURLをそのまま開いてください。</p>
+  <div class="actions">
+    <a class="button" id="open-app" href="#">推したくアプリで開く</a>
+    <a class="button secondary" id="ios" href="https://apps.apple.com/jp/app/id6761519647">App Storeでダウンロード</a>
+    <a class="button secondary" id="android" href="https://play.google.com/store/apps/details?id=com.oshitaku.app">Google Playでダウンロード</a>
+  </div>
+  <p class="note">このページには、フォロー用のリンクだけが入っています。名前や祭壇は、アプリで開いたときにだけ表示されます。</p>
+  <footer><a href="privacy_policy.html">プライバシーポリシー</a>・<a href="terms_of_service.html">利用規約</a></footer>
+</main>
+<script>
+  'use strict';
+  // An account's follow link: follow.html?t=<22 URL-safe characters>. The app opens com.oshitaku.app://follow?t=<token>.
+  const params = new URLSearchParams(location.search);
+  const token = params.get('t') || '';
+  const valid = params.getAll('t').length === 1 && /^[A-Za-z0-9_-]{22}$/.test(token);
+  const open = document.getElementById('open-app');
+  const ua = navigator.userAgent;
+  const isAndroid = /Android/i.test(ua);
+  const store = isAndroid ? document.getElementById('android').href : document.getElementById('ios').href;
+  if (!valid) {
+    open.hidden = true;
+    document.getElementById('invalid').hidden = false;
+  } else if (isAndroid) {
+    // Chrome opens the app, or Google Play when it is not installed.
+    open.href = 'intent://follow?t=' + encodeURIComponent(token) + '#Intent;scheme=com.oshitaku.app;package=com.oshitaku.app;S.browser_fallback_url=' + encodeURIComponent(store) + ';end';
+  } else {
+    open.href = 'com.oshitaku.app://follow?t=' + encodeURIComponent(token);
+  }
+  if (isAndroid) document.querySelector('.actions').insertBefore(document.getElementById('android'), document.getElementById('ios'));
+</script>
+</body>
+</html>
